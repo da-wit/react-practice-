@@ -87,7 +87,7 @@ export default function App(){
     <p>Count:{count}</p>
     <button onClick={handleUpCount}>+</button>
   </div>
-  <p>{count === 0? "Today is ": count > 0 ? `${count} Days away from today`: `${Math.abs(count)} Days ago was`}{date.toDateString()}</p>
+  <p>{count === 0? "Today is ": count > 0 ? `${count} Days away from today `: `${Math.abs(count)} Days ago was `}{date.toDateString()}</p>
    </>
 }
 
@@ -114,5 +114,43 @@ function answers(id){
       <p>{curerntdId === items.id? items.answer: items.question}</p>
     </div>)}
 
+  </div>
+}
+
+
+
+export function Counter(){
+  const [range,setRange] = useState(1);
+
+  const [counter,setCount] = useState(0)
+ 
+  function down(){
+    return setCount(counter - range)
+  }
+
+  function up(){
+    return setCount(counter + range)
+  }
+
+  function reset(){
+    
+      setRange(1)
+      setCount(0)
+    
+  }
+
+
+  const time = new Date()
+  time.setDate(time.getDate() + counter)
+  return <div>
+    <span><input type='range' min={0} max={10} value={range} onChange={(e)=> setRange(Number(e.target.value))}/></span><span>{range}</span>
+    <div>
+    <button onClick={down}>➖</button>
+    <input type='text' value={counter} onChange={e =>setCount(Number(e.target.value))} />
+    <button onClick={up}>➕</button>
+    </div>
+    <p>{counter === 0 ? `Today is ${time.toDateString()}`: counter > 0 ? `Today is ${counter} days from  ${time.toDateString()}`: `${Math.abs(counter)} Days ago was ${time.toDateString()}`}</p>
+    <button onClick={reset} className={Math.abs(counter) === 0? 'btn1': ""}>Reset</button>
+    
   </div>
 }

@@ -87,5 +87,15 @@
   background-color: red;
   color: white;
   border-radius: 50px;
+  transform: translateX(10%);
+  transform: translateY(10%);
+  transform: translateX(-5%);
+  transform: translateY(-5%);
+  
+  transition: transform 0.3s ease-in-out;
+}
 
+
+.btn1{
+  display: none;
 }
