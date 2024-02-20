@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { pizzaData } from './data';
+import {useState } from 'react'
 
 
 
@@ -59,11 +60,16 @@ function Footer(){
 }
 
 function Order({closeHour}){
+  const [order,setOrder] = useState(0)
+  function handle(){
+    return setOrder(order + 1)
+  }
   return (<div>
     <p> 
     we are open unitl {closeHour}:00, Come vist us or Order us online!
      </p>
-     <button className='btn'>Order</button>
+     <p>Order:{order}</p>
+     <button className='btn' onClick={handle}>Order</button>
   </div>)
 
 }

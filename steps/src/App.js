@@ -58,7 +58,7 @@ export default function App(){
  function Steps(){
   const [steps,setSteps] = useState(0)
   function handleUpStep(){
-    return setSteps(steps + 1)
+    setSteps(steps + 1)
   }
   function handleDownStep(){
     return setSteps(steps -1 )
@@ -72,7 +72,7 @@ export default function App(){
     return setCount(count - steps  )
   }
 
-  const date = new Date("jun 21 2027")
+  const date = new Date()
   date.setDate(date.getDate() + count)
 
   return <>
@@ -91,3 +91,28 @@ export default function App(){
    </>
 }
 
+
+const quiz = [
+  {id:1,question:'What is your name', answer:'dawit'},
+  {id:2,question:'What is your name', answer:'kidus'},
+  {id:3,question:'What is your name', answer:'lala'},
+  {id:4,question:'How old are you', answer:'12'},
+  {id:5,question:'How old are you', answer:'2'},
+  {id:6,question:'How old are you', answer:'89'},
+]
+
+export function Question(){
+const [curerntdId,setId] = useState(null)
+function answers(id){
+  return setId(id)
+}
+
+  return <div className='card'  >
+    {quiz.map((items)=>
+    <div key={items.id} className={curerntdId === items.id? 'answer': ''} 
+    onClick={() =>answers(items.id)}>
+      <p>{curerntdId === items.id? items.answer: items.question}</p>
+    </div>)}
+
+  </div>
+}
