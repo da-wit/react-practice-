@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  box-shadow: 5px 5px 10px;
+  
+}
+.main1{
+  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-top: 4px solid ;
+    border-left:1px solid black ;
+    border-right: 1px solid black;
+   
+}
+.val{
+  margin: 10% 30%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  align-items: center;
+  box-shadow: 5px 5px 10px;
+  flex-direction: column;
+
+}
+
+.pp{
+  color: lawngreen;
+}
+p{
+  font-size: 25px;
+}
+.number{
+  font-size: 30px;
+  opacity: 0.4;
+}
+
+/* will be used when we acctuly have a drop down*/
+.num{
+  font-size: 30px;
+  color:lawngreen;
+}
+
+/* will be changed when we acctuly have a drop down*/
+.down{
+  display: none;
+  align-self: center;
+}
+.up{
+  display: none;
+  align-self: center;
+}
+
+
+.answer{
+  transform: translateX(20px);
+  display: none;
+  font-size: 30px;
+}
+.ans{
+  transform: translateX(20px);
+  font-size: 30px;
+  border: 1px solid black;
+  box-shadow: 2px 4px 2px;
+  border-top: none;
+  width: 100%;
+  text-align: center;
+  margin-right: 40px;
+  
+}
+
+
+
