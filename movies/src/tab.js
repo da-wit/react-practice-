@@ -166,7 +166,7 @@ function Undo({ setHide, setNum }) {
     setNum(0);
   }
   function redo() {
-    setTimeout(undo, 5000);
+    setTimeout(undo, 2000);
   }
   return (
     <div>
