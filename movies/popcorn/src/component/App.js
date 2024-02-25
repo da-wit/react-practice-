@@ -8,6 +8,21 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [mainMovies, setMainMovies] = useState(myMovies);
 
+  const [watchList, setWatchList] = useState([]);
+
+  function handleWatch(id) {
+    // console.log(watchList);
+    // console.log(id);
+    const add = mainMovies.find((item) => item.id === id);
+    console.log(add);
+    if (watchList.some((movieId) => movieId.id === add.id)) {
+      console.log("added");
+    } else {
+      setWatchList((watchList) => [...watchList, add]);
+    }
+    // console.log(watchList);
+  }
+
   useEffect(function () {
     async function getElement() {
       const res = await fetch("https://api.sampleapis.com/movies/animation");
@@ -45,8 +60,9 @@ export default function App() {
           myMovies={myMovies}
           mainMovies={mainMovies}
           filter={filter}
+          handleWatch={handleWatch}
         />
-        <WatchList />
+        <WatchList watchList={watchList} />
       </div>
     </div>
   );

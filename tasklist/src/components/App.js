@@ -16,6 +16,7 @@ export default function App() {
 
   function handleItem(item) {
     setItems((items) => [...items, item]);
+    console.log(items);
   }
 
   function handleDelete(id) {

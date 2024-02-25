@@ -1,6 +1,6 @@
 import "./movies.css";
 
-export default function Movies({ filter, mainMovies, search }) {
+export default function Movies({ filter, mainMovies, search, handleWatch }) {
   return (
     <div className="list">
       {/* {myMovies
@@ -21,7 +21,13 @@ export default function Movies({ filter, mainMovies, search }) {
 
       {filter.length !== 0 ? (
         filter.map((movies) => {
-          return <ListMovies key={movies.id} movie={movies} />;
+          return (
+            <ListMovies
+              key={movies.id}
+              movie={movies}
+              handleWatch={handleWatch}
+            />
+          );
         })
       ) : (
         <Message />
@@ -40,14 +46,18 @@ export default function Movies({ filter, mainMovies, search }) {
     </div>
   );
 }
-function ListMovies({ movie }) {
+function ListMovies({ movie, handleWatch }) {
   return (
-    <div className="movies">
+    <div
+      className="movies"
+      style={{ cursor: "pointer" }}
+      onClick={() => handleWatch(movie.id)}
+    >
       <img className="img" src={movie.posterURL} alt={movie.title} />
       <div className="values">
         <p>Title: {movie.title}</p>
         <p>Genre: {movie.id}</p>
-        <p>⭐ {movie.titl}</p>
+        <p>⭐ {movie.imdbId}</p>
       </div>
     </div>
   );
