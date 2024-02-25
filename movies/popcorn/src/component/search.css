@@ -1,0 +1,37 @@
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px  100px;
+    border: 1px solid lightskyblue;
+    border-radius: 20px;  
+
+}
+
+.pop{
+    font-size: 20px;
+     align-content: center
+}
+.span{
+    font-size: 30px;
+    align-content: center;
+}
+
+.input{
+    border: 5px solid lightgrey;
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 15px;
+
+    font-weight:500;
+}
+.input:focus{
+    background-color: black;
+    color: white;
+    border: 5px solid;
+}
+
+.found{
+    margin-right: 20px;
+    font-size: 20px;
+}

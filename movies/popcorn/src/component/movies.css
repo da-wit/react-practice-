@@ -1,0 +1,27 @@
+.movies{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 2px solid lightcyan;
+    border-radius: 30px;
+    margin: 0 20px;
+    height: 150px;
+    
+}
+
+.img{
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 30px;   
+     border-bottom-left-radius: 30px;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: 2px solid black;
+    margin: 0 100px;
+    gap: 2px;
+    background-color: #716D6C;
+        border-radius: 20px;
+}

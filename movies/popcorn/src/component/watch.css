@@ -1,0 +1,10 @@
+.watch{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: 2px solid black;
+    margin: 0 100px;
+    gap: 2px;
+    background-color: #716D6C;
+    border-radius: 20px;
+}
