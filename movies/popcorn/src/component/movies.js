@@ -1,6 +1,20 @@
+import { useState } from "react";
 import "./movies.css";
 
-export default function Movies({ filter, mainMovies, search, handleWatch }) {
+export default function Movies({
+  filter,
+  mainMovies,
+  search,
+  handleWatch,
+  isLoading,
+  error,
+}) {
+  const [hide, setHide] = useState(true);
+
+  function handleHide() {
+    setHide(!hide);
+  }
+
   return (
     <div className="list">
       {/* {myMovies
@@ -18,20 +32,43 @@ export default function Movies({ filter, mainMovies, search, handleWatch }) {
       ) : (
         <Message />
       )} */}
-
-      {filter.length !== 0 ? (
-        filter.map((movies) => {
-          return (
-            <ListMovies
-              key={movies.id}
-              movie={movies}
-              handleWatch={handleWatch}
-            />
-          );
-        })
+      <Display handleHide={handleHide} />
+      {isLoading ? (
+        <Loading />
+      ) : hide ? (
+        filter.length !== 0 ? (
+          filter.map((movies) => {
+            return (
+              <ListMovies
+                key={movies.id}
+                movie={movies}
+                handleWatch={handleWatch}
+              />
+            );
+          })
+        ) : (
+          <Message />
+        )
       ) : (
-        <Message />
+        ""
       )}
+      {/* {hide ? (
+        filter.length !== 0 ? (
+          filter.map((movies) => {
+            return (
+              <ListMovies
+                key={movies.id}
+                movie={movies}
+                handleWatch={handleWatch}
+              />
+            );
+          })
+        ) : (
+          <Message />
+        )
+      ) : (
+        ""
+      )} */}
 
       {/* {mainMovies
         .filter((movie) => {
@@ -65,4 +102,31 @@ function ListMovies({ movie, handleWatch }) {
 
 function Message() {
   return <h2>Movie not found</h2>;
+}
+
+export function Display({ handleHide }) {
+  return (
+    <span
+      style={{
+        marginLeft: "auto",
+        marginRight: "20px",
+
+        cursor: "pointer",
+        backgroundColor: "white",
+        borderRadius: "100px",
+        marginBottom: "10px",
+      }}
+      onClick={handleHide}
+    >
+      ➖
+    </span>
+  );
+}
+
+function Loading() {
+  return (
+    <h2 style={{ color: "green", fontSize: "30px", textAlign: "center" }}>
+      Loading...
+    </h2>
+  );
 }
