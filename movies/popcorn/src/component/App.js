@@ -17,9 +17,37 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(true);
 
   function handleDelete(id) {
-    setIsOpen(!isOpen);
     setWatchList(watchList.filter((item) => item.id !== id));
+    setDetail(null);
   }
+
+  // useEffect(
+  //   function () {
+  //     document.addEventListener("keypress", function (e) {
+  //       if(detail){
+
+  //       }
+
+  //   },
+  //   [isOpen]
+  // );
+
+  useEffect(
+    function () {
+      document.addEventListener("keypress", function (e) {
+        if (detail) {
+          if (e.code === "Enter") {
+            setIsOpen(!isOpen);
+            console.log();
+            setDetail({});
+          }
+        } else {
+          return;
+        }
+      });
+    },
+    [detail, isOpen]
+  );
 
   function handleDetail(detail) {
     console.log(detail);
@@ -50,21 +78,16 @@ export default function App() {
 
     // console.log(watchList);
   }
-  useEffect(
-    function () {
-      if (detail.title) return;
-      document.title = `${detail.title}`;
-    },
-    [detail.title]
-  );
 
   useEffect(
     function () {
+      // const controller = new AbortController();
       async function getElement() {
         try {
           setIsLoading(true);
           const res = await fetch(
             "https://api.sampleapis.com/movies/animation"
+            // { signal: controller.signal }
           );
           if (!res.ok) throw new Error("Error");
 
@@ -80,6 +103,11 @@ export default function App() {
         // console.log(data);
       }
       getElement();
+
+      // return function () {
+      //   controller.abort();
+      //   console.log("abort");
+      // };
     },
     [setError, setIsLoading]
   );
@@ -98,6 +126,7 @@ export default function App() {
 
   return (
     <div>
+      <Converter />
       <Search
         search={search}
         setSearch={setSearch}
@@ -162,6 +191,7 @@ export function WatchList({
     const details = mainMovies.find((item) => item.id === id);
     setDetail(details);
   }
+
   return (
     <div className="watch">
       <InitialWatchList handleHide={handleHide} watchList={watchList} />
@@ -223,21 +253,35 @@ function View({ items, open, handleDelete }) {
       <div>
         <p style={{ marginLeft: "30px" }}>title: {items.title}</p>
         <p style={{ marginLeft: "30px" }}>id:{items.id}</p>
-        <p style={{ marginLeft: "30px" }}>
-          rating{items.imdbId}{" "}
-          <span
-            style={{ marginLeft: "40px" }}
-            onClick={() => handleDelete(items.id)}
-          >
-            ❌
-          </span>
-        </p>
+        <p style={{ marginLeft: "30px" }}>rating{items.imdbId}</p>
       </div>
+      <Delete handleDelete={handleDelete} items={items} />
     </div>
   );
 }
 
+function Delete({ handleDelete, items }) {
+  return (
+    <span style={{ marginLeft: "40px" }} onClick={() => handleDelete(items.id)}>
+      ❌
+    </span>
+  );
+}
+
 function Detail({ detail, setIsOpen, isOpen, handleDetail, watchList }) {
+  useEffect(
+    function () {
+      if (!detail.title) return;
+      document.title = `Movie | ${detail.title}`;
+      console.log(detail.title);
+
+      return function () {
+        document.title = "Use Pop Corn";
+        console.log(`Cleaned up ${detail.title} `);
+      };
+    },
+    [detail.title]
+  );
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <span
@@ -285,5 +329,64 @@ function InitialWatchList({ handleHide, watchList }) {
         <p>time</p>
       </div>
     </>
+  );
+}
+
+function Converter() {
+  const [amount, setAmount] = useState(1);
+  const [fromCur, setFromCur] = useState("GBP");
+  const [toCur, setToCur] = useState("USD");
+
+  const [convert, setConvert] = useState("");
+
+  useEffect(
+    function () {
+      async function getAmount() {
+        const host = "api.frankfurter.app";
+        fetch(
+          `https://${host}/latest?amount=${amount}&from=${fromCur}&to=${toCur}`
+        )
+          .then((resp) => resp.json())
+          .then((data) => {
+            setConvert(data.rates[toCur]);
+          });
+        // const host = "api.frankfurter.app";
+
+        // const res = await fetch;
+        // fetch(
+        //   `https://${host}/latest?amount=${amount}&from=${fromCur}&to=${toCur}`
+        // );
+
+        // const data = await res.json();
+        // setConvert(data.rates.fromCur);
+      }
+      getAmount();
+    },
+    [fromCur, toCur, amount]
+  );
+  return (
+    <div>
+      <input
+        value={amount}
+        placeholder="add Amount"
+        onChange={(e) => setAmount(Number(e.target.value))}
+      />
+
+      <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
+        <option value="GBP">GBP</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+
+      <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="INR">INR</option>
+      </select>
+      <p>
+        {" "}
+        {convert} if from {fromCur} to {toCur}
+      </p>
+    </div>
   );
 }
