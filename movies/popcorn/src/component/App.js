@@ -5,17 +5,36 @@ import Search from "./search";
 import myMovies from "./data";
 import "./watch.css";
 import { Display } from "./movies";
+import useMovies from "./useMovies";
+import useLocalStorageState from "./useLocalStorageState";
+import useKey from "./useKey";
 
 export default function App() {
   const [search, setSearch] = useState("");
-  const [mainMovies, setMainMovies] = useState(myMovies);
-  const [watchList, setWatchList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [mainMovies, setMainMovies] = useState(myMovies);
+
+  // const [watchList, setWatchList] = useState(function () {
+  //   const stored = localStorage.getItem("watchlist");
+  //   return JSON.parse(stored);
+  // });
+
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
+
+  const { mainMovies, error, isLoading } = useMovies(
+    search
+    // , handleConsole
+  );
 
   const [detail, setDetail] = useState({});
   const [isOpen, setIsOpen] = useState(true);
 
+  useKey("Escape", setIsOpen);
+
+  // function handleConsole() {
+  //   console.log({ search });
+  // }
+  const [watchList, setWatchList] = useLocalStorageState([], "lala");
   function handleDelete(id) {
     setWatchList(watchList.filter((item) => item.id !== id));
     setDetail(null);
@@ -32,22 +51,22 @@ export default function App() {
   //   [isOpen]
   // );
 
-  useEffect(
-    function () {
-      document.addEventListener("keypress", function (e) {
-        if (detail) {
-          if (e.code === "Enter") {
-            setIsOpen(!isOpen);
-            console.log();
-            setDetail({});
-          }
-        } else {
-          return;
-        }
-      });
-    },
-    [detail, isOpen]
-  );
+  // useEffect(
+  //   function () {
+
+  //     function callBack(e) {
+  //       if (e.code === "Escape") {
+  //         setIsOpen(true);
+  //       }
+  //     }
+  //     document.addEventListener("keydown", callBack);
+
+  //     return function () {
+  //       document.removeEventListener("keydown", callBack);
+  //     };
+  //   },
+  //   [isOpen]
+  // );
 
   function handleDetail(detail) {
     console.log(detail);
@@ -56,10 +75,24 @@ export default function App() {
     if (watchList.some((movieId) => movieId.id === add.id)) {
       console.log("added");
     } else {
-      setWatchList((watchList) => [...watchList, add]);
+      const added = { ...add, user: isOpen };
+      setWatchList((watchList) => [...watchList, added]);
+      console.log(watchList);
+      // localStorage.setItem("watched", JSON.stringify([...watchList, add]));
     }
     setIsOpen(!isOpen);
   }
+
+  // function add() {
+  //   console.log("after 5 sec");
+  // }
+
+  // useEffect(
+  //   function () {
+  //     localStorage.setItem("watchlist", JSON.stringify(watchList));
+  //   },
+  //   [watchList]
+  // );
 
   function handleWatch(id) {
     // console.log(watchList);
@@ -79,38 +112,38 @@ export default function App() {
     // console.log(watchList);
   }
 
-  useEffect(
-    function () {
-      // const controller = new AbortController();
-      async function getElement() {
-        try {
-          setIsLoading(true);
-          const res = await fetch(
-            "https://api.sampleapis.com/movies/animation"
-            // { signal: controller.signal }
-          );
-          if (!res.ok) throw new Error("Error");
+  // useEffect(
+  //   function () {
+  //     // const controller = new AbortController();
+  //     async function getElement() {
+  //       try {
+  //         setIsLoading(true);
+  //         const res = await fetch(
+  //           "https://api.sampleapis.com/movies/animation"
+  //           // { signal: controller.signal }
+  //         );
+  //         if (!res.ok) throw new Error("Error");
 
-          const data = await res.json();
-          setMainMovies(data);
-          setIsLoading(false);
-        } catch (e) {
-          console.log(e.message);
-          setError(e.message);
-        } finally {
-          setIsLoading(false);
-        }
-        // console.log(data);
-      }
-      getElement();
+  //         const data = await res.json();
+  //         setMainMovies(data);
+  //         setIsLoading(false);
+  //       } catch (e) {
+  //         console.log(e.message);
+  //         setError(e.message);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //       // console.log(data);
+  //     }
+  //     getElement();
 
-      // return function () {
-      //   controller.abort();
-      //   console.log("abort");
-      // };
-    },
-    [setError, setIsLoading]
-  );
+  //     // return function () {
+  //     //   controller.abort();
+  //     //   console.log("abort");
+  //     // };
+  //   },
+  //   [setError, setIsLoading]
+  // );
 
   const filter = mainMovies.filter((item) => {
     return item.title.toLowerCase().includes(search.toLowerCase());

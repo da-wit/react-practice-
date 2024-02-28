@@ -1,4 +1,9 @@
+import {
+  // useEffect
+  useRef,
+} from "react";
 import "./search.css";
+import useKey from "./useKey";
 
 export default function Search({
   search,
@@ -7,10 +12,40 @@ export default function Search({
   filter,
   handle,
 }) {
+  const inputElement = useRef(null);
+
+  useKey("Enter", function () {
+    inputElement.current.focus();
+    setSearch("");
+  });
+  // useEffect(
+  //   function () {
+  //     // inputElement.current.focus();
+
+  //     function callBack(e) {
+  //       if (e.code === "Enter") {
+  //         // console.log("enter");
+  //         inputElement.current.focus();
+  //         setSearch("");
+  //       }
+  //     }
+  //     document.addEventListener("keydown", callBack);
+
+  //     return function () {
+  //       document.removeEventListener("keydown", callBack);
+  //     };
+  //   },
+  //   [setSearch]
+  // );
   return (
     <div className="search">
       <PopCorn />
-      <Input search={search} setSearch={setSearch} handle={handle} />
+      <Input
+        search={search}
+        setSearch={setSearch}
+        handle={handle}
+        inputElement={inputElement}
+      />
       <Found search={search} mainMovies={mainMovies} filter={filter} />
     </div>
   );
@@ -29,7 +64,7 @@ function PopCorn() {
   );
 }
 
-function Input({ search, setSearch, handle }) {
+function Input({ search, setSearch, handle, inputElement }) {
   return (
     <div>
       <span style={{ fontSize: "25px", alignContent: "center" }}>🔎</span>
@@ -39,6 +74,7 @@ function Input({ search, setSearch, handle }) {
         value={search}
         placeholder="Enter the title"
         onChange={(e) => handle(e.target.value)}
+        ref={inputElement}
       />
     </div>
   );
