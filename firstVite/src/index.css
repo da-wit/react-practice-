@@ -1,0 +1,37 @@
+.btn{
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 13px;
+
+}
+.select{
+    transform: translateX(20px);
+}
+.btn:hover{
+    /* margin-bottom:15px; */
+    font-size: 20px;
+    background-color: grey;
+    cursor: pointer;
+}
+
+.btn[disabled]:hover{
+    cursor: not-allowed;
+}
+
+.btn.correct{
+    border-radius: 10px;
+    background-color: greenyellow;
+    color: black;
+    font-size: 13px;    
+}
+.btn.wrong {
+    border-radius: 10px;
+    background-color: red;
+    color: black;
+    font-size: 13px;
+}
+
+.lala{
+    background-color: blue;
+}

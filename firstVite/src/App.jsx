@@ -1,9 +1,10 @@
 import { 
   // useEffect,
    useReducer } from 'react'
-
+// 
 import './App.css'
 import useRange from './useRange'
+import PropTypes from 'prop-types';
 
 const initialState = {count:0,range:1}
 
@@ -135,7 +136,18 @@ function Range({range,handleSetRange}){
     <input type='range' value={range} min={1} max={20} onChange={(e)=>handleSetRange(Number(e.target.value))}/> <span>{range}</span>
   </div>
 }
+Range.propTypes={
+  range : PropTypes.number,
+  handleSetRange:PropTypes.func
+}
 
+
+View.propTypes={
+  count : PropTypes.number,
+  handleCount:PropTypes.func,
+  handleAdd:PropTypes.func,
+  handleSub:PropTypes.func,
+}
 
 function View({handleCount,count , handleAdd ,handleSub}){
   const time = new Date()
@@ -160,14 +172,26 @@ function Sub({handleSub}){
   return <button onClick={handleSub}>➖</button>
 
 }
+Sub.propTypes={
+  handleSub:PropTypes.func
+}
 function Add({handleAdd}){
   return <button onClick={handleAdd}>➕</button>
+}
+Add.propTypes={
+  handleAdd:PropTypes.func
 }
 function Amount({handleCount, count}){
   return <input type='text' value={count} onChange={(e)=>handleCount(Number(e.target.value))} />
 }
-
+Amount.propTypes={
+  handleCount:PropTypes.func,
+  count: PropTypes.number
+}
 
 function Reset({handleReset}){
   return <button onClick={handleReset}>Reset</button>
+}
+Reset.propTypes={
+  handleReset:PropTypes.func
 }
