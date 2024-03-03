@@ -22,19 +22,13 @@ export default function Next({dispatch,index,answer,numQuestions}) {
     },[dispatch,answer])
 
    
-  return (
-    <div>
-       {answer !== null && index < numQuestions-1 &&  <button onClick={()=>dispatch({type:"inc"})}
-   style={{backgroundColor:"gray" , color:"lime" , fontSize:"15px"}}>
-    Next
-    </button> }
-    </div>
-  )
+  if(answer !== null && index < numQuestions -1){
+    return <button onClick={()=>dispatch({type:"inc"})}>Next</button>
+  }
+  if(answer !== null && index === numQuestions -1){
+    return <button onClick={()=>dispatch({type:"end"})}>Finish</button>
+  }
 }
-
-
-
-  
   
 
 Next.propTypes={
