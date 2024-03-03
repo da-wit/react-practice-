@@ -1,0 +1,16 @@
+.div{
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.logo{
+    height: 80px;
+  
+}
+.div p{
+    font-size: 50px;
+    color: white;
+}
+a:link{
+    text-decoration: none;
+}

@@ -1,0 +1,27 @@
+.main{
+    height: calc(100vh - 7rem);
+    background-image: linear-gradient(rgba(26, 86, 126, 0.8),rgba(80, 106, 111, 0.8)),url('/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2.5rem 5rem;
+    margin: 10px;
+}
+
+.main section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    gap: 2.5rem;
+    text-align: center;
+}
+.main h1{
+    font-size: 50px;
+    color: white;
+    line-height: 1.5;
+}
+.main p {
+    font-size: 20px;
+    color: lightslategray;
+}

@@ -1,0 +1,39 @@
+.appNav{
+    /* text-align: center; */
+    
+    margin-top: 10px;
+    /* border-radius: 10px;
+    margin: 0 80px; */
+    margin-bottom: 20px;
+   
+}
+.appNav ul{
+    list-style: none;
+    display: flex;
+    
+    justify-content: center;
+    border-radius: 5px;
+    border-radius: 10px;
+    background-color: rgb(37, 40, 37);
+    margin: 0 80px; 
+}
+
+
+.appNav  :link,
+.appNav  :visited{
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(37, 40, 37);
+    padding: 0px 20px;
+}
+
+.appNav :global(.active){
+   
+   background-color: gray;
+  
+   border-radius: 10px;
+   
+}

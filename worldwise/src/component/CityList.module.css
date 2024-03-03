@@ -1,0 +1,14 @@
+.list{
+    display: flex;
+    align-items: center;
+
+}
+.emoji{
+    font-size: 20px;
+    margin-right: 10px;
+    font-family: "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+.list h1{
+    margin: 0 10px;
+    margin-right: auto;
+}
