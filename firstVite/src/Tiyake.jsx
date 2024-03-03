@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export default function Tiyake({question,dispatch,answer }) {
-  // console.log(question)
+  console.log(question)
   return (
     <div>
         <h2>{question.question}</h2>
