@@ -10,7 +10,7 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": 73930385
+      "id": "73930385"
     },
     {
       "cityName": "Madrid",
@@ -22,7 +22,7 @@
         "lat": 40.46635901755316,
         "lng": -3.7133789062500004
       },
-      "id": 17806751
+      "id": "17806751"
     },
     {
       "cityName": "Berlin",
@@ -34,32 +34,67 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 98443197
+      "id": "98443197"
     },
     {
-      "cityName": "porchu",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
+      "id": "2b50",
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2024-03-06T06:33:40.516Z",
+      "notes": "paris",
       "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930386
+        "lat": "48.83579746243093",
+        "lng": "2.2732837956625134"
+      }
     },
     {
-      "cityName": "barcilona",
+      "id": "67a9",
+      "cityName": "Vianos",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
+      "date": "2024-03-06T09:01:29.779Z",
+      "notes": "jsdbf",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806757
-    }   
-
+        "lat": "38.4362557616669",
+        "lng": "-2.4365708804933095"
+      }
+    },
+    {
+      "id": "4e52",
+      "cityName": "Ilulissat",
+      "country": "Greenland",
+      "emoji": "🇬🇱",
+      "date": "2024-03-06T11:23:05.933Z",
+      "notes": "gvhhhhhhhh",
+      "position": {
+        "lat": "70.07814497247338",
+        "lng": "-47.22190837221242"
+      }
+    },
+    {
+      "id": "784b",
+      "cityName": "Carmichael No. 109",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2024-03-06T11:23:23.460Z",
+      "notes": "gggggggggggggg",
+      "position": {
+        "lat": "50.012376285575286",
+        "lng": "-108.80998422789611"
+      }
+    },
+    {
+      "id": "cc6a",
+      "cityName": "Shoshoni",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2024-03-06T11:23:38.271Z",
+      "notes": "gggggggggggggg",
+      "position": {
+        "lat": "43.18048042815429",
+        "lng": "-107.80739972481216"
+      }
+    }
   ]
 }

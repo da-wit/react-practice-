@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  flex-direction: column;
+  background-color: rgb(108, 107, 107);
+  padding: 10px;
+  border-radius: 10px;
+}
+.main div {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.main div h6 {
+  text-transform: uppercase;
+  text-align: start;
+  font-weight: lighter;
+}
+.main div h3 {
+  text-align: start;
+  color: white;
+}
+
+.main div a {
+  text-align: start;
+  color: rgb(255, 234, 0);
+}

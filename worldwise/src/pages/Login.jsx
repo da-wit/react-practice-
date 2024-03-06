@@ -1,42 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageNav from "../component/PageNav";
-import styles from "./Login.module.css"
-import { Link } from "react-router-dom";
+import styles from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/FeakAuthContext";
 export default function Login() {
   // const [user,setUser] = useState([])
-  const [email,setEmail] = useState("john@example.com");
-  const [password,setPassword] =useState("1234")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { error, isAuthenticated, login } = useAuth();
+  const navigate = useNavigate();
 
+  function handleClick(e) {
+    e.preventDefault();
+    if (email && password) login(email, password);
+  }
 
- 
-  // function handleClick(e){
-  //   e.preventDefault()
-  //   const newUser ={email:email, password:password}
-  //   setUser([...user,newUser])
-      
-
-  // }
-  
- 
+  useEffect(
+    function () {
+      if (isAuthenticated) {
+        return navigate("/app");
+      }
+    },
+    [isAuthenticated, navigate]
+  );
 
   return (
     <div className={styles.login}>
-      <PageNav/>
+      <PageNav />
       <main>
-        <form >
+        <form onSubmit={handleClick}>
           <div>
-          <label htmlFor="email">Email address</label>
-          <input type="email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            {error && <Correct />}
+            <label htmlFor="email">Email address</label>
+
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <button type="submit" ><Link to="/app">Login</Link></button>
-
-         
+          <button type="submit">Login</button>
         </form>
       </main>
     </div>
-  )
+  );
+}
+
+function Correct() {
+  return <p>Incorect Email or passWord</p>;
 }

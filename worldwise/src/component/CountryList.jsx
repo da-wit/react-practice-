@@ -1,13 +1,13 @@
-
-
-export default function CountryList({countrys}) {
-    const{emoji,country} = countrys
-
+import styles from "./CountryList.module.css";
+export default function CountryList({ countrys }) {
+  const { emoji, country } = countrys;
 
   return (
-    <div style={{display:'flex',flexDirection:"column"}}>
-        <span>{emoji}</span>
-        <h2>{country}</h2>
-    </div>
-  )
+    <ul className={styles.main}>
+      <li>
+        <p>{emoji}</p>
+        <p>{country}</p>
+      </li>
+    </ul>
+  );
 }
